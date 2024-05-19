@@ -24,7 +24,7 @@ pm_apt_repos() {
     if vergt "${MINIMUM_LIBSECCOMP2}" "${INSTALLED_LIBSECCOMP2:-0}"; then
         info "Installing buster-backports repo for libseccomp2."
         sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC 648ACFD622F3D138 || error "Failed to get apt key for buster-backports repo.\nFailing command: ${F[C]}sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC 648ACFD622F3D138"
-        echo "deb http://deb.debian.org/debian buster-backports main" | sudo tee -a /etc/apt/sources.list.d/buster-backports.list || error "Failed to add buster-backports repo to sources.\nFailing command: ${F[C]}echo \"deb http://deb.debian.org/debian buster-backports main\" | sudo tee -a /etc/apt/sources.list.d/buster-backports.list"
+        echo "deb http://archive.debian.org/debian buster-backports main" | sudo tee -a /etc/apt/sources.list.d/buster-backports.list || error "Failed to add buster-backports repo to sources.\nFailing command: ${F[C]}echo \"deb http://deb.debian.org/debian buster-backports main\" | sudo tee -a /etc/apt/sources.list.d/buster-backports.list"
     fi
     info "Updating repositories."
     eval "sudo apt-get -y update ${REDIRECT}" || fatal "Failed to get updates from apt.\nFailing command: ${F[C]}sudo apt-get -y update"
